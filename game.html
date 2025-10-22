@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackjack Table</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Blackjack</h1>
+  <nav>
+    <a href="menu.html">Home</a>
+    <a href="rules.html">Rules</a>
+  </nav>
+</header>
+
+<!-- Hidden checkboxes -->
+<input type="checkbox" id="bet-toggle" hidden>
+<input type="checkbox" id="hit-toggle" hidden>
+<input type="checkbox" id="stand-toggle" hidden>
+<input type="checkbox" id="double-toggle" hidden>
+
+<!-- Control buttons -->
+<div class="controls">
+  <label for="hit-toggle" class="button">Hit</label>
+  <label for="stand-toggle" class="button">Stand</label>
+  <label for="double-toggle" class="button">Double Down</label>
+</div>
+
+<div class="table">
+  <!-- DEALER -->
+  <div class="dealer">
+    <div class="deck-stack">
+      <div class="deck-card stack-card4">🂠</div>
+      <div class="deck-card stack-card3">🂠</div>
+      <div class="deck-card stack-card2">🂠</div>
+      <div class="deck-card stack-card1">🂠</div>
+    </div>
+
+    <!-- Dealer visible card -->
+    <div class="card dealer-card1 black">A♠</div>
+
+    <!-- Dealer hole card  -->
+    <div class="card-container">
+      <div class="card-back">🂠</div>
+      <div class="card-front black">K♦</div>
+    </div>
+  </div>
+
+  <!-- PLAYER -->
+  <div class="player">
+    <div class="card player-card1 red">3♥</div>
+    <div class="card player-card2 red">4♦</div>
+    <div class="card player-card3 red">7♣</div>
+    <label for="bet-toggle" class="chip chip-red"></label>
+  </div>
+</div>
+
+</body>
+</html>
