@@ -1,0 +1,251 @@
+:root {
+  --felt-color: darkgreen;
+  --table-border: gold;
+  --chip-red: #e74c3c;
+  --card-width: 80px;
+  --card-height: 120px;
+  --header-bg: #003300;
+  --header-text: #fff;
+}
+
+body {
+  margin: 0;
+  background-color: var(--felt-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  color: var(--header-text);
+}
+
+header {
+  width: 95%;
+  background-color: var(--header-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+nav a {
+  color: var(--header-text);
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: gold;
+}
+
+/* TABLE */
+.table {
+  width: 600px;
+  height: 400px;
+  border: 4px solid var(--table-border);
+  border-radius: 50%;
+  position: relative;
+  perspective: 1000px;
+  background: radial-gradient(circle at center, #006400 0%, #004000 100%);
+  margin-top: 40px;
+}
+
+
+.dealer {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.deck-stack {
+  position: absolute;
+  top: 0;
+  left: 120px; 
+  width: var(--card-width);
+  height: var(--card-height);
+}
+.stack-card1 { top: 0; left: 0; z-index: 4; }
+.stack-card2 { top: 5px; left: 5px; z-index: 3; }
+.stack-card3 { top: 10px; left: 10px; z-index: 2; }
+.stack-card4 { top: 15px; left: 15px; z-index: 1; }
+
+.deck-card {
+  width: var(--card-width);
+  height: var(--card-height);
+  background-color: #ccc;
+  border-radius: 8px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI Symbol', 'Noto Emoji', sans-serif;
+}
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: -120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  border: 2px solid black;
+  opacity: 0;
+  transform: scale(0.5);
+  background-color: white; 
+}
+.card.red { color: red; }
+.card.black { color: black; }
+
+.player {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.chip {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+  z-index: 10;
+  background-color: var(--chip-red);
+}
+.chip:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(255,255,0,0.7);
+}
+
+/* BUTTONS */
+.controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+.button {
+  padding: 10px 20px;
+  background: gold;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.button:hover { transform: scale(1.1); }
+
+#bet-toggle, #hit-toggle, #stand-toggle, #double-toggle { display: none; }
+
+#bet-toggle:checked ~ .table .chip {
+  bottom: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* SHUFFLE */
+#bet-toggle:checked ~ .table .stack-card1 { animation: shuffle 0.5s forwards 0s; }
+#bet-toggle:checked ~ .table .stack-card2 { animation: shuffle 0.5s forwards 0.1s; }
+#bet-toggle:checked ~ .table .stack-card3 { animation: shuffle 0.5s forwards 0.2s; }
+#bet-toggle:checked ~ .table .stack-card4 { animation: shuffle 0.5s forwards 0.3s; }
+
+@keyframes shuffle {
+  0% { transform: translate(0,0) rotate(0deg); opacity:1; }
+  50% { transform: translate(-10px,-10px) rotate(-10deg); opacity:1; }
+  100% { transform: translate(0,0) rotate(0deg); opacity:1; } 
+}
+
+/* DEAL ANIMATIONS */
+#bet-toggle:checked ~ .table .dealer-card1 { animation: deal-dealer1 0.6s ease forwards 0.5s; }
+#bet-toggle:checked ~ .table .player-card1 { animation: deal-player1 0.6s ease forwards 1.5s; }
+#bet-toggle:checked ~ .table .player-card2 { animation: deal-player2 0.6s ease forwards 2.0s; }
+
+/* DEAL POSITIONS */
+@keyframes deal-dealer1 { from { transform: translate(120px,0) scale(0.5); opacity:0; } to { transform: translate(-40px,0) scale(1); opacity:1; } }
+@keyframes deal-player1 { from { transform: translate(120px,0) scale(0.5); opacity:0; } to { transform: translate(-40px,250px) scale(1); opacity:1; } }
+@keyframes deal-player2 { from { transform: translate(120px,0) scale(0.5); opacity:0; } to { transform: translate(40px,250px) scale(1); opacity:1; } }
+
+/* PLAYER EXTRA CARD */
+#hit-toggle:checked ~ .table .player-card3,
+#double-toggle:checked ~ .table .player-card3 {
+  opacity: 1;
+  transform: translate(80px, 250px) scale(1);
+  transition: all 0.6s ease;
+}
+
+/* CARD CONTAINER FOR DEALER HOLE CARD */
+.card-container {
+  width: var(--card-width);
+  height: var(--card-height);
+  position: absolute;
+  top: 0;
+  left: 120px; 
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  opacity: 1;
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+.card-front {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  background-color: #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI Symbol', 'Noto Emoji', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  backface-visibility: hidden;
+}
+
+@keyframes move-dealer-hole {
+  from { transform: translate(0,0) scale(0.5); left: 120px; }
+  to { transform: translate(40px,0) scale(1); left: -110px; }
+}
+#bet-toggle:checked ~ .table .card-container {
+  animation: move-dealer-hole 0.6s ease forwards 1s;
+}
+
+/* Flip dealer hole card */
+#stand-toggle:checked ~ .table .card-container,
+#double-toggle:checked ~ .table .card-container {
+  transform: rotateY(180deg);
+  transition: transform 0.6s ease;
+}
