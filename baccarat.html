@@ -2,14 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Card Table Dealer Demo</title>
+    <title>Baccarat - Card Table Dealer Demo</title>
     <link rel="stylesheet" href="game-style.css">
 </head>
 <body>
 
     <div class="table-container">
+
+        <div class="card burn-card"></div>
+
         <div class="dealer-area">
-            <h2>Dealer</h2>
+            <h2>Banker</h2>
             <div class="dealer-cards">
                 <div class="card" id="dcard1"></div>
                 <div class="card" id="dcard2"></div>
@@ -25,14 +28,14 @@
         </div>
 
         <div class="chips">
-            <div class="chip"></div>
-            <div class="chip"></div>
-            <div class="chip"></div>
+            <div class="chip" title="Bet on Player"></div>
+            <div class="chip" title="Bet on Banker"></div>
+            <div class="chip" title="Bet on Tie"></div>
         </div>
 
         <div class="result">
-            <p>Winner: <span class="winner-text">Player</span></p>
-            <button class="replay-btn">Replay</button>
+            <p>Winner: <span class="winner-text">Banker</span></p>
+            <a href="homepage.html" class="replay-btn">Back to Home</a>
         </div>
     </div>
     
