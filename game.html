@@ -1,40 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Card Table Dealer Demo</title>
-    <link rel="stylesheet" href="game-style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackjack Table</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-    <div class="table-container">
-        <div class="dealer-area">
-            <h2>Dealer</h2>
-            <div class="dealer-cards">
-                <div class="card" id="dcard1"></div>
-                <div class="card" id="dcard2"></div>
-            </div>
-        </div>
+<header>
+  <h1>Blackjack</h1>
+  <nav>
+    <a href="menu.html">Home</a>
+    <a href="rules.html">Rules</a>
+  </nav>
+</header>
 
-        <div class="player-area">
-            <h2>Player</h2>
-            <div class="player-cards">
-                <div class="card" id="pcard1"></div>
-                <div class="card" id="pcard2"></div>
-            </div>
-        </div>
+<!-- Hidden checkboxes -->
+<input type="checkbox" id="bet-toggle" hidden>
+<input type="checkbox" id="hit-toggle" hidden>
+<input type="checkbox" id="stand-toggle" hidden>
+<input type="checkbox" id="double-toggle" hidden>
+<!-- Result Overlay -->
+<div class="result-overlay">
+  <div class="result-message">
+    <h2>You Lose</h2>
+<a href="" class="play-again button">Play Again</a>
+  </div>
+</div>
+<!-- Control buttons -->
+<div class="controls">
+  <label for="hit-toggle" class="button">Hit</label>
+  <label for="stand-toggle" class="button">Stand</label>
+  <label for="double-toggle" class="button">Double Down</label>
+</div>
 
-        <div class="chips">
-            <div class="chip"></div>
-            <div class="chip"></div>
-            <div class="chip"></div>
-        </div>
-
-        <div class="result">
-            <p>Winner: <span class="winner-text">Player</span></p>
-            <button class="replay-btn">Replay</button>
-        </div>
+<div class="table">
+  <!-- DEALER -->
+  <div class="dealer">
+    <div class="deck-stack">
+      <div class="deck-card stack-card4">🂠</div>
+      <div class="deck-card stack-card3">🂠</div>
+      <div class="deck-card stack-card2">🂠</div>
+      <div class="deck-card stack-card1">🂠</div>
     </div>
-    
+
+
+
+    <!-- Dealer visible card -->
+    <div class="card dealer-card1 black">A♠</div>
+
+    <!-- Dealer hole card container stacked on deck -->
+   <div class="card-container">
+  <div class="hole-card">
+    <div class="card-back">🂠</div>
+    <div class="card-front black">K♦</div>
+  </div>
+</div>
+
+
+  <!-- PLAYER -->
+  <div class="player">
+    <div class="card player-card1 red">3♥</div>
+    <div class="card player-card2 red">4♦</div>
+    <div class="card player-card3 red">7♣</div>
+    <label for="bet-toggle" class="chip chip-red"></label>
+  </div>
+</div>
+
 </body>
 </html>
